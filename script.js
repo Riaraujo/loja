@@ -1,10 +1,10 @@
 // Estado da aplicação
 const AppState = {
     stores: [
-        { id: 1, name: 'TechStore', password: '123456' },
-        { id: 2, name: 'EletroMax', password: 'eletro123' },
-        { id: 3, name: 'InfoCenter', password: 'info456' },
-        { id: 4, name: 'DigitalWorld', password: 'digital789' }
+        { id: 1, name: '127', password: '123456' },
+        { id: 2, name: '173', password: 'eletro123' },
+        { id: 3, name: '179', password: 'info456' },
+        { id: 4, name: '105', password: 'digital789' }
     ],
     products: [
         {
