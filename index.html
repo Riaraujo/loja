@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rede de Lojas - Produtos com Defeito</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        
+        <div class="sidebar-header">
+            <h2><i class="fas fa-store"></i> Rede de Lojas</h2>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul>
+                <!-- Outras opções do menu podem ser adicionadas aqui -->
+            </ul>
+        </nav>
+        <!-- Seleção de Loja e Login -->
+        <div class="store-selector">
+            <label for="storeSelect">Loja:</label>
+            <select id="storeSelect">
+                <option value="">Selecione uma loja</option>
+                <!-- Lojas serão carregadas dinamicamente -->
+            </select>
+            
+            <!-- Login da Loja -->
+            <div class="store-login hidden" id="storeLogin">
+                <input type="password" id="storePassword" placeholder="Senha da loja">
+                <button id="loginBtn">Entrar</button>
+                <button id="logoutBtn" class="hidden">Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay para mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-left">
+                <h1 id="pageTitle">Todos os Produtos</h1>
+            </div>
+            
+            <div class="header-center">
+                
+            </div>
+            
+            <div class="header-right">
+                
+            </div>
+        </header>
+
+        <!-- Menu de Navegação Horizontal -->
+        <nav class="horizontal-nav">
+            <ul class="nav-menu">
+                <li>
+                    <a href="#" id="todosProductsBtn" class="nav-item active">
+                        <i class="fas fa-box"></i>
+                        <span>Todos os Produtos</span>
+                    </a>
+                </li>
+                <li id="addProductMenuItem" class="hidden">
+                    <a href="#" id="addProductBtn" class="nav-item">
+                        <i class="fas fa-plus"></i>
+                        <span>Adicionar Produto</span>
+                    </a>
+                </li>
+                <li id="manageProductsMenuItem" class="hidden">
+                    <a href="#" id="manageProductsBtn" class="nav-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Gerenciar Produtos</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="nav-filters">
+                <select id="storeFilter" class="hidden">
+                    <option value="">Todas as lojas</option>
+                    <!-- Lojas serão carregadas dinamicamente -->
+                </select>
+                <select id="sortFilter">
+                    <option value="name">Ordenar por Nome</option>
+                    <option value="price">Ordenar por Preço</option>
+                    <option value="store">Ordenar por Loja</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="Buscar produtos...">
+            </div>
+        </nav>
+
+        <!-- Área de Produtos -->
+        <section class="products-section" id="productsSection">
+            <div class="products-grid" id="productsGrid">
+                <!-- Produtos serão carregados dinamicamente -->
+            </div>
+        </section>
+
+        <!-- Formulário de Adicionar/Editar Produto -->
+        <section class="product-form-section hidden" id="productFormSection">
+            <div class="form-container">
+                <h2 id="formTitle">Adicionar Produto</h2>
+                <form id="productForm">
+                    <div class="form-group">
+                        <label for="productImage">Foto do Produto *</label>
+                        <input type="file" id="productImage" accept="image/*" required>
+                        <div class="image-preview" id="imagePreview"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productName">Nome do Produto *</label>
+                        <input type="text" id="productName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productDefect">Descrição do Defeito *</label>
+                        <textarea id="productDefect" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productRCT">RCT (Código do Produto) *</label>
+                        <input type="text" id="productRCT" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="originalPrice">Preço Original (R$) *</label>
+                            <input type="number" id="originalPrice" step="0.01" min="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="promotionalPrice">Preço Promocional (R$)</label>
+                            <input type="number" id="promotionalPrice" step="0.01" min="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="finalPrice">Preço de Venda (R$) *</label>
+                            <input type="number" id="finalPrice" step="0.01" min="0" required>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="cancelFormBtn">Cancelar</button>
+                        <button type="submit" id="saveProductBtn">Salvar Produto</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Modal de Confirmação -->
+        <div class="modal hidden" id="confirmModal">
+            <div class="modal-content">
+                <h3>Confirmar Ação</h3>
+                <p id="confirmMessage"></p>
+                <div class="modal-actions">
+                    <button id="confirmCancelBtn">Cancelar</button>
+                    <button id="confirmOkBtn">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
